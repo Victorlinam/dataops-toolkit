@@ -1,0 +1,17 @@
+{
+  "name": "dataops-toolkit",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "demo"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev -w apps/api\" \"npm run dev -w apps/web\"",
+    "build": "npm run build -w apps/api && npm run build -w apps/web && npm run build -w demo",
+    "lint": "npm run lint -w apps/api && npm run lint -w apps/web",
+    "test": "npm run test -w apps/api"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.1"
+  }
+}
