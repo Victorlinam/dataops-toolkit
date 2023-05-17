@@ -1,0 +1,54 @@
+generator client { provider = "prisma-client-js" }
+datasource db { provider = "postgresql" url = env("DATABASE_URL") }
+
+enum Role { ADMIN ANALYST OPERATOR VIEWER }
+enum JobStatus { QUEUED RUNNING SUCCESS FAILED }
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  role         Role
+  createdAt    DateTime @default(now())
+  reports      Report[]
+  auditLogs    AuditLog[]
+}
+model Dataset {
+  id           String   @id @default(cuid())
+  name         String
+  sourceType   String
+  rowCount     Int
+  checksum     String
+  uploadedById String
+  uploadedAt   DateTime @default(now())
+}
+model Workflow {
+  id          String   @id @default(cuid())
+  name        String
+  schedule    String
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  etlJobs     EtlJob[]
+}
+model EtlJob {
+  id          String    @id @default(cuid())
+  workflowId  String
+  status      JobStatus
+  startedAt   DateTime?
+  endedAt     DateTime?
+  logs        String?
+  workflow    Workflow  @relation(fields: [workflowId], references: [id])
+}
+model Report {
+  id          String   @id @default(cuid())
+  title       String
+  version     Int      @default(1)
+  format      String
+  generatedAt DateTime @default(now())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
+}
+model ApiLog { id String @id @default(cuid()) method String path String status Int latencyMs Int createdAt DateTime @default(now()) }
+model Notification { id String @id @default(cuid()) type String payload Json createdAt DateTime @default(now()) }
+model AuditLog { id String @id @default(cuid()) userId String action String entity String createdAt DateTime @default(now()) user User @relation(fields:[userId], references:[id]) }
+model ScheduledTask { id String @id @default(cuid()) taskName String cron String lastRunAt DateTime? nextRunAt DateTime? }
