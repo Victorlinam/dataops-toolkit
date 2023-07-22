@@ -1,0 +1,36 @@
+:root { color-scheme: dark; }
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Inter, ui-sans-serif, system-ui;
+  background: radial-gradient(circle at 10% 10%, #355f54 0%, #1f2725 44%, #181818 100%);
+  color: #f7f1ec;
+}
+.app { min-height: 100vh; padding: 3rem clamp(1rem, 3vw, 3rem); max-width: 1200px; margin: 0 auto; }
+.hero h1 { font-size: clamp(2rem, 5vw, 3.6rem); margin: .2rem 0 .7rem; line-height: 1.1; max-width: 16ch; }
+.eyebrow { text-transform: uppercase; letter-spacing: .1em; color: #d6c6b8; font-size: .8rem; }
+.hero-copy { max-width: 64ch; opacity: .9; }
+
+.kpi-grid { margin-top: 2rem; display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+.card, .panel {
+  background: linear-gradient(135deg, rgba(214,198,184,.12), rgba(47,93,80,.2));
+  border: 1px solid rgba(214,198,184,.26);
+  border-radius: 16px;
+  padding: 1rem;
+  backdrop-filter: blur(6px);
+}
+.card h3 { font-size: 1.9rem; margin: .45rem 0; }
+.muted { opacity: .75; margin: 0; }
+.delta { color: #a7d8b5; font-weight: 600; }
+.panel-grid { margin-top: 1rem; display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+.panel h2 { margin-top: .2rem; }
+.panel ul { list-style: none; padding: 0; margin: .75rem 0 0; display: grid; gap: .65rem; }
+.panel li { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(214,198,184,.2); padding-bottom: .55rem; }
+.panel li div { display: flex; flex-direction: column; gap: .2rem; }
+.panel li span { opacity: .7; font-size: .9rem; }
+.panel em { font-style: normal; color: #d6c6b8; font-size: .9rem; }
+.bars { height: 170px; display: flex; gap: .5rem; align-items: end; padding: .75rem 0; }
+.bars span { flex: 1; border-radius: 8px 8px 4px 4px; background: linear-gradient(180deg, #d6c6b8, #2f5d50); }
+.footer { margin-top: 2rem; text-align: center; display: flex; flex-direction: column; gap: .35rem; align-items: center; }
+.footer p { margin: 0; }
+.source-link { margin-top: .35rem; color: #f7f1ec; text-decoration: none; display: inline-flex; align-items: center; gap: .4rem; border-bottom: 1px solid rgba(247,241,236,.45); }
